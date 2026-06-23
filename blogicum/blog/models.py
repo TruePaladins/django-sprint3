@@ -51,6 +51,7 @@ class Post(models.Model):
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
 
+
 class Category(models.Model):
     title = models.CharField(
         max_length=256,
@@ -63,8 +64,8 @@ class Category(models.Model):
         unique=True,
         verbose_name='Идентификатор',
         help_text=(
-            'Идентификатор страницы для URL; разрешены символы латиницы, цифры, '
-            'дефис и подчёркивание.'
+            'Идентификатор страницы для URL; разрешены символы латиницы, '
+            'цифры, дефис и подчёркивание.'
         )
     )
     is_published = models.BooleanField(
