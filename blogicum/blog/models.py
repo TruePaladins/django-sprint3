@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
 class Post(models.Model):
     title = models.CharField(
         max_length=256,
@@ -13,23 +14,26 @@ class Post(models.Model):
     )
     pub_date = models.DateTimeField(
         verbose_name='Дата и время публикации',
-        help_text='Если установить дату и время в будущем — можно делать отложенные публикации.'
+        help_text=(
+            'Если установить дату и время в будущем — можно делать '
+            'отложенные публикации.'
+        )
     )
     author = models.ForeignKey(
-        User, 
+        User,
         on_delete=models.CASCADE,
         verbose_name='Автор публикации'
     )
     location = models.ForeignKey(
-        'Location', 
-        on_delete=models.SET_NULL, 
-        null=True, 
+        'Location',
+        on_delete=models.SET_NULL,
+        null=True,
         blank=True,
         verbose_name='Местоположение'
     )
     category = models.ForeignKey(
-        'Category', 
-        on_delete=models.SET_NULL, 
+        'Category',
+        on_delete=models.SET_NULL,
         null=True,
         verbose_name='Категория'
     )
@@ -42,6 +46,7 @@ class Post(models.Model):
         auto_now_add=True,
         verbose_name='Добавлено'
     )
+
     class Meta:
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
@@ -57,7 +62,10 @@ class Category(models.Model):
     slug = models.SlugField(
         unique=True,
         verbose_name='Идентификатор',
-        help_text='Идентификатор страницы для URL; разрешены символы латиницы, цифры, дефис и подчёркивание.'   
+        help_text=(
+            'Идентификатор страницы для URL; разрешены символы латиницы, цифры, '
+            'дефис и подчёркивание.'
+        )
     )
     is_published = models.BooleanField(
         default=True,
@@ -71,6 +79,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'категория'
         verbose_name_plural = 'Категории'
+
 
 class Location(models.Model):
     name = models.CharField(
@@ -86,6 +95,7 @@ class Location(models.Model):
         auto_now_add=True,
         verbose_name='Добавлено'
     )
+
     class Meta:
         verbose_name = 'местоположение'
         verbose_name_plural = 'Местоположения'

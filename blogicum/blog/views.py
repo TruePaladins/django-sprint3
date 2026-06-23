@@ -1,7 +1,6 @@
 from django.utils import timezone
-from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
-from blog.models import Post, Category, Location
+from blog.models import Post, Category
 
 
 def index(request):
@@ -12,7 +11,7 @@ def index(request):
         category__is_published=True
     ).order_by('-pub_date')[:5]
     context = {'posts': posts}
-    
+
     return render(request, template, context)
 
 
@@ -26,7 +25,7 @@ def post_detail(request, post_id):
         pub_date__lte=timezone.now()
     )
     context = {'post': post}
-    
+
     return render(request, template, context)
 
 
