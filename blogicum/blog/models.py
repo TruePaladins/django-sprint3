@@ -51,6 +51,7 @@ class Post(models.Model):
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
 
+
 class Category(models.Model):
     title = models.CharField(
         max_length=256,
@@ -76,9 +77,11 @@ class Category(models.Model):
         auto_now_add=True,
         verbose_name='Добавлено'
     )
+
     class Meta:
         verbose_name = 'категория'
         verbose_name_plural = 'Категории'
+
 
 class Location(models.Model):
     name = models.CharField(
