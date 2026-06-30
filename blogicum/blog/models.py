@@ -3,10 +3,12 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+MAX_LENGTH_TITLE = 256
+MAX_LENGTH_NAME = 256
 
 class Post(models.Model):
     title = models.CharField(
-        max_length=256,
+        max_length=MAX_LENGTH_TITLE,
         verbose_name='Заголовок'
     )
     text = models.TextField(
@@ -50,11 +52,14 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
+        ordering=['-pub_date']
 
+    def __str__(self):
+        return self.title
 
 class Category(models.Model):
     title = models.CharField(
-        max_length=256,
+        max_length=MAX_LENGTH_TITLE,
         verbose_name='Заголовок'
     )
     description = models.TextField(
@@ -81,11 +86,14 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'категория'
         verbose_name_plural = 'Категории'
+    
+    def __str__(self):
+        return self.title
 
 
 class Location(models.Model):
     name = models.CharField(
-        max_length=256,
+        max_length=MAX_LENGTH_NAME,
         verbose_name='Название места'
     )
     is_published = models.BooleanField(
@@ -101,3 +109,5 @@ class Location(models.Model):
     class Meta:
         verbose_name = 'местоположение'
         verbose_name_plural = 'Местоположения'
+    def __str__(self):
+        return self.name
