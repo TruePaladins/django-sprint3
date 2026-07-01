@@ -84,6 +84,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'категория'
         verbose_name_plural = 'Категории'
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.title
@@ -107,6 +108,7 @@ class Location(models.Model):
     class Meta:
         verbose_name = 'местоположение'
         verbose_name_plural = 'Местоположения'
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.name
