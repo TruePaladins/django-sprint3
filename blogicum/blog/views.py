@@ -5,6 +5,7 @@ from blog.models import Category, Post
 
 POSTS_PER_PAGE = 5
 
+
 def get_posts():
     return Post.objects.filter(
         is_published=True,
@@ -35,7 +36,11 @@ def post_detail(request, post_id):
 
 def category_posts(request, category_slug):
     template = 'blog/category.html'
-    category = get_object_or_404(Category, slug=category_slug, is_published=True)
+    category = get_object_or_404(
+        Category,
+        slug=category_slug,
+        is_published=True,
+    )
     posts = get_posts().filter(category=category)
     return render(request, template, {
         'category': category,
