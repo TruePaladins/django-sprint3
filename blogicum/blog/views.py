@@ -24,11 +24,8 @@ def index(request):
 def post_detail(request, post_id):
     template = 'blog/detail.html'
     post = get_object_or_404(
-        Post,
-        id=post_id,
-        is_published=True,
-        category__is_published=True,
-        pub_date__lte=timezone.now()
+        get_posts(),
+        id=post_id
     )
     context = {'post': post}
     return render(request, template, context)
